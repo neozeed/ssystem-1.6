@@ -1,0 +1,278 @@
+OpenGL ssystem 1.6 26-Feb-1999
+------------------------------
+
+
+
+Que es ssystem:
+---------------
+
+	Ssystem es un simulador del Sistema Solar que utiliza OpenGL. Visita
+  el Sol, los nueve planetas y algunos satelites (estrellas de fondo basadas
+  en catalogo estan tambien incluidas) con 4 modos de camara.
+
+
+Precision:
+----------
+
+	Aunque ssystem no es 100% preciso he intentado mantenerlos lo mas
+  cerca posible de la realidad. Sin embargo, el objetivo de ssystem ha sido
+  siempre mas un buen aspecto visual que la precision, asi que puede que
+  encuentres errores en los algoritmos de posicionamiento.
+
+	Solo los planetas y la Luna estan dentro de una rango de las
+ posiciones reales, todos los demas satelites (aunque siguen unas orbitas
+ mas o menos correctas) no estan en las posiciones reales.
+
+
+Requisitos del sistema:
+-----------------------
+
+	-Linux o Windows 95/NT
+	-Librerias OpenGL (probado con Mesa 2.6 y Microsoft DLLs)
+	-Libreria GLUT (probado con 3.6)
+	-Libreria JPEG (probado con 6.0.1)
+        -Tarjeta 3D (NO IMPRESCINDIBLE pero RECOMENDADA)
+                Voodoo Graphics (linux y win95/98)
+                Voodoo Rush     (linux y win95/98)
+                Riva 128        (win95/98)
+		Riva TNT	(win95/98)
+		Permedia	(win95/98)
+
+	Si tu chip 3d no esta incluido arriba y ssystem funciona acelerado
+  por hardware mandame un e-mail.
+
+	Ver Makefile para opciones de compilacion.
+
+
+Opciones en linea de comando:
+-----------------------------
+
+	-bench
+	
+		Aborta la ejecucion del programa tras 1000 frames, mostrando
+		el rendimiento
+
+	-fullscreen [mode_string]
+
+		Ejecuta ssystem en pantalla completa. En maquinas Linux/UNIX
+		no podras cambiar el modo de video asi que no es necesario
+		suministrar el mode_string (de hecho ssystem protestara si
+		lo haces)
+
+		En la version de Windows 95/98 puedes elegir el modo de video.
+		Simplemente incluye una cadena de modo detras de fullscreen.
+		La sintaxis del modo es:
+
+			ANCHOxALTO:PROFUNDIDAD_COLOR@REFRESCO
+
+		El refresco es opcional. Asi, si quieres ejecutar ssystem a
+		640x480 32 bits de color la linea de comandos es algo como:
+
+			ssystem -fullscreen 640x480:32
+
+		If quieres un refresco de 100 Hz seria:
+
+			ssystem -fullscreen 640x480:32@100
+
+
+                NOTA: NO TODOS LOS MODOS DE VIDEO ESTAN SOPORTADOS. DE HECHO
+		SOLO UNOS POCO FUNCIONAN EN MI ORDENADOR. SI EL MODO DE VIDEO
+		QUE HAS SELECCIONADO NO ESTA SOPORTADO SSYSTEM UTILIZA EL
+		MODO DE VIDEO ACTUAL.
+
+
+Rendimiento:
+------------
+
+
+	La aceleracion hardware no es indispensable, pero si muy recomendable
+  para un moviemiendo suave. Yo consigo 83fps (bajo Linux) con la opcion
+  "-bench" en mi Celeron 450 a 640x480:16 (con una Voodoo Graphics) y 56 fps
+  a 1024x768:32 (en win98 con una Riva TNT). Ssystem es un espectaculo en
+  este modo de video.
+
+  	El nivel de detalle de las esferas planetarias (SLICES y STACKS) es el
+  factor clave en el rendimiento, la gente con CPUs lentas deberia usar valores
+  mas bajos (ver fichero ssystem.conf).
+
+
+Asignacion de teclas:
+---------------------
+
+	Home/End: Selecciona el anterior/siguiente cuerpo
+	SHIFHT + Home/End: Selecciona el anterior/siguiente cuerpo de origen
+			   en el modo de camara B2B
+	Insert: Orbita del planeta activo on/off
+	h : Ayuda en linea
+	a : Atmosfera on/off
+	t : Textura on/off
+	l : Iluminacion on/off
+	f : Flat/Smooth modelo de sombreado
+	r : Tiempo real on/off
+	s : Estrellas on/off
+	S : Graba la pantalla a un fichero (en formato JPEG)
+	m/M : Incrementa/decrementa el brillo de las estrellas
+	d : Modo demo on/off
+	n : Posiciona la camara cerca del planeta activo
+	c : Cambia entre modo de camara libre o siguendo al planeta
+	o/O : Mayor/Menos FOV
+	p : Pausa
+	r : Modo tiempo real on/off
+	b : Etiquetas para cuerpos lejanos on/off
+	B : Etiquetas para estrellas on/off
+	i : Informacion (HUD) on/off
+	j : Joystick on/off
+	Pagina Arriba/Abajo: Incrementa/decrementa la velocidad
+	z/Z : Incrementa/decrementa el zoom
+		(solo disponible en los modos de B2B y Orbiter)
+
+  Manten apretado el SHIFT para un funcionamiento mas rapido en las
+  siguientes asignaciones:
+
+	+/-: Incrementa/Decrementa el factor de tiempo
+	Cursores: Rotacion de camara
+
+
+Modos de camara:
+----------------
+
+	Hay 4 modos de camara:
+
+	-Linked: Modo por defecto. La camara sigue al cuerpo selecionado. La
+	 tecla 'n' es muy util en este modo.
+
+	-Body to Body: Este modo te deja ver el cuerpo X como si estuvieses
+	 en el cuerpo Y.
+
+	-Orbiter: La camara se mueve alrededor del cuerpo selecionado en una
+	 orbita circular (completa una orbita en media dia local). Prueba la
+	 tecla de zoom 'z' en este modo.
+
+	-Fee Camera: Puedes controlar la camara libremente con los cursosres/
+	 raton/joystick.
+
+
+Movimiento de camara:
+---------------------
+
+ -Teclado
+
+	En el mode de camara libre los cursores rotan la camara, Pagina 
+	Arriba/Abajo incrementan/decrementan la velocidad de la camara. 
+
+	El modo seguimiento es un poco diferente, aqui los cursores no tienen
+	uso. Puedes mover la camara hacia el planeta incrementando la velocidad.
+	Una vez estas cerca del planeta el propio programa pone la velocidad a
+	cero.
+
+ -Raton
+
+	En el modo de camara libre puedes controlar la camara con el raton
+	si mantienes pulsado el boton izquierdo mientras mueves el raton.
+
+ -Joystick
+
+	Como con el raton tienes que selecionar el modo de camara libre,
+	entonces activa el joystick (j). Los ejes X e Y controlan la camara y
+	los botones A y B la aceleration. Presionando los botones C o D se
+	pone la velocidad a 0 (si tu joystick solo tiene dos botones puedes
+	conseguir esto pulsando los dos botones simultaneamente).
+
+
+Bugs conocidos:
+---------------
+
+	El movimiento de los cuerpos mas exteriores es un poco trompicado.
+  Aunque ssystem usa aritmetica de doble precision, Mesa la utiliza de simple
+  internamente (mas rapida y suficientemente precisa para la mayoria de las
+  aplicaciones). Ajustando un poco las escalas he podido reducir este efecto
+  (ahora solo Caronte se ve afectado). Las buenas noticias: Se como solucionar
+  este efecto; las malas: sera necesario reescribir grandes porciones del
+  codigo fuente asi que suponho que tendra que esperar a la proxima version :-(
+
+	Si estas viendo lineas negras a lo largo de los planetas esto no es un
+  bug. Ssytem utiliza por defecto texturas sin borde (que funcionan bien en
+  casi todo el hardware 3D) pero los driver OpenGL por software y quiza alguno
+  acelerado por hardware requieren texturas con borde. Edita el fichero
+  ssystem.conf y pon border = 1 (elimina el caracter # en la linea 18). Ciertas
+  tarjetas 3D no funcionan si border esta a 1 (3Dfx).
+
+	Los modos de pantalla completa solo funcionan bajo drivers que soporten
+  el mode de video actual (*nix) o el modo que le hayas pasado en la linea de
+  comandos (win32). Si fuerzas el modo de pantalla completa y tu hardware no
+  soporta el modo de video ssystem no funcionara (correctamente).
+
+
+
+RECOMOCIMIENTOS:
+----------------
+
+
+-Brian Paul (Mesa)
+	http://www.ssec.wisc.edu/~brianp/MesQ.html 
+
+-Daryll Strauss (Linux Glide)
+
+
+-David Bucciarelli (driver 3Dfx para Mesa)
+	http://www-hmw.caribel.pisa.it/fxmesa/index.shtml
+
+-Curtis L. Olson (catalogo de estrellas)
+
+
+-Este software esta en parte basado en el trabajo de The Independent JPEG Group
+
+
+-Los satelites Galileanos y de Saturn calculados con code extraido con permiso 
+ de XEphem, (c) 1997 Elwood Charles Downey
+	http://iraf.noao.edu/~ecdowney/xephem.html
+
+-Algoritmo de posicionamiento de los planetas de Keith Burnett utilizado con
+ permiso
+	http://www.xylem.demon.co.uk/kepler/
+
+-Nacho (beta testing)
+
+-Kevin Kamel (mirror en USA)
+
+-Rafael Barbera (truco aumento rendimiento en v1.4)
+
+-Aaron Worley (fichero de configuracion y bastantes ideas)
+        http://hirame.hiram.edu/~worleyam/hitch/index.html
+
+-Elias Martenson (SUN Makefile)
+
+-Andrey Zakhvatov (FreeBSD port)
+
+-Mike Oliphant y Rob Clark (grabar pantallas)
+	http://www.ling.ed.ac.uk/~oliphant/pyro
+
+-John Kilburg and Bill Spitzak (SGI Makefiles)
+
+-Bjorn Jonsson (texturas de Io, Europa y Saturno)
+
+-Larry Manley (funciones MoonPos y PlutoPos y todo el tema de VSOP87,
+	       ver astrolib.c)
+
+-Tigran A. Aivazian (sugerencias y avisos de errores)
+
+-Axel Groll (extensive beta testing)
+
+-Y por supuesto, gracias a ti
+
+
+
+NOTA:
+-----
+
+	Este es mi primer programa OpenGL y esta todavia en fase de desarrollo,
+  asi que agradeceria vuestros comentarios.
+
+	La critica constructiva siempre es bienvenida. :-)
+
+	Visita la pagina de ssystem para nuevas versiones:
+
+			http://www1.las.es/~amil/ssystem
+
+Raul Alonso
+<amil@las.es>

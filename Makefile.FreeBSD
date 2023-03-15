@@ -1,0 +1,83 @@
+#
+#	ssystem 1.6 Makefile for FreeBSD
+#
+#	Contributed by Andrey Zakhvatov <andy@icc.surw.chel.su>
+#
+#	You can also find a binary FreeBSD package (maybe outdated) here:
+#			http://www.freebsd.org/ports/astro.html
+
+
+# C compiler
+CC?= gcc
+
+# X Window System directory
+X11BASE?= /usr/X11R6
+
+# Local packages directory
+LOCALBASE?= /usr/local
+
+# Installation directories
+PREFIX?= $(X11BASE)
+SDATADIR?= ${PREFIX}/share/ssystem
+
+# Your Mesa base directory
+MESADIR?= $(X11BASE)
+
+# Your JPEG base directory
+JPEGDIR?= $(LOCALBASE)
+
+CFLAGS+= -I$(X11BASE)/include -I$(MESADIR)/include -I$(JPEGDIR)/include -DSDATADIR=\"${SDATADIR}\"
+
+LDFLAGS= -L$(X11BASE)/lib -L$(MESADIR)/lib -L${JPEGDIR}/lib \
+	 -ljpeg -lglut -lMesaGLU -lMesaGL -lXext -lXmu -lX11 -lXi -lm
+
+# FreeBSD specific
+.ifdef PORTOBJFORMAT
+.if ${PORTOBJFORMAT} == "elf"
+LDFLAGS+= -Wl,-rpath,$(X11BASE)/lib
+.endif
+.endif
+
+OBJ = cfgparse.tab.o lex.cfg.o ssystem.o init.o positions.o joystick.o \
+        cmdline.o keyboard.o mouse.o scrnsht.o sun.o timer.o util.o astrolib.o \
+        jpeg.o stars.o
+
+LIBS = 
+
+all: ssystem
+
+clean:
+	rm -f *.o *~ ssystem .depend cfgparse.tab.* cfgparse.output lex.cfg.c
+
+ssystem: $(OBJ)
+	$(CC) -o ssystem $(OBJ) $(LDFLAGS) $(LIBS) 
+
+lex.cfg.c: cfglex.l cfgparse.tab.c
+	flex -i -Pcfg cfglex.l
+
+cfgparse.tab.c: cfgparse.y
+	bison -d -v -p cfg cfgparse.y
+
+.c.o:
+	$(CC) -c $(CFLAGS) $< 
+
+dep:
+	gcc -MM -I/root/Mesa-2.5/include *.c > .depend
+
+# DO NOT DELETE
+astrolib.o: astrolib.c vsop87.dat
+cfgparse.tab.o: cfgparse.tab.c ssystem.h
+cmdline.o: cmdline.c ssystem.h cfgparse.tab.h
+init.o: init.c ssystem.h cfgparse.tab.h
+joystick.o: joystick.c ssystem.h cfgparse.tab.h
+jpeg.o: jpeg.c ssystem.h cfgparse.tab.h
+keyboard.o: keyboard.c ssystem.h cfgparse.tab.h
+lex.cfg.o: lex.cfg.c ssystem.h cfgparse.tab.h
+mouse.o: mouse.c ssystem.h cfgparse.tab.h
+positions.o: positions.c ssystem.h cfgparse.tab.h
+scrnsht.o: scrnsht.c ssystem.h cfgparse.tab.h
+ssystem.o: ssystem.c ssystem.h cfgparse.tab.h
+stars.o: stars.c ssystem.h cfgparse.tab.h
+sun.o: sun.c ssystem.h cfgparse.tab.h
+timer.o: timer.c ssystem.h cfgparse.tab.h
+util.o: util.c ssystem.h cfgparse.tab.h

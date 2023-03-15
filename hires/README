@@ -1,0 +1,20 @@
+			HIGH RESOLUTION MAPS
+			====================
+
+	Starting with v1.5 ssystem defaults to high-res maps. With the new
+  texture handling method, ssystem is no longer limited by texture buffer size.
+  Since ssystem uses only the maps of those bodies near the camera, you should
+  make sure those maps are smaller than your texture buffer, so there's no
+  texture cache trashing. Of course, if you're running ssystem on a software
+  only  OpenGL driver you don't have to care about this ... it will run slow
+  anyway ;-)
+
+  	For those of you with new generation 3d cards with plenty of texture 
+  buffer and/or AGP 2X modes, higher resolutions maps are available from
+  ssystem homepage (http://www1.las.es/~amil/ssystem).
+
+	If you download a high-res map put it in this directory, then edit
+  the ssystem.conf file and set body texture filename to hires/filename.jpg.
+
+  I'M LOOKING FOR HIGH-RES EARTH CLOUD MAPS, IF YOU KNOW WHERE TO FIND SUCH
+  A MAP PLEASE LET ME KNOW.

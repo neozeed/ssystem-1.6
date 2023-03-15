@@ -1,0 +1,48 @@
+				INSTALACION
+				===========
+
+  Dependiendo de tu sistem sigue las instrucciones.
+
+        ****************************************************************
+        * ANTES DE EJECUTAR SSYSTEM ECHALE UN VISTAZO AL FICHERO DE    *
+        * CONFIGURACION (ssystem.conf). ALLI PODRAS ACTIVAR/DESACTIVAR *
+        * OPCIONES QUE TE AYUDARAN A AJUSTAR EL RENDIMIENTO Y LA       * 
+	* CALIDAD VISUAL					       *
+        ****************************************************************
+
+LINUX/UNIX
+----------
+
+  Librerias necesarias:
+
+	- Librerias compatibles OpenGL 1.2 y glut 3.7. Si no estas seguro
+	  te sugiero que te bajes Mesa 3.0 (descarga tambien la distribucion
+	  Demos si quieres glut 3.7)
+
+	- Libreria JPEG del Independent JPEG Group. La mayoria de los sistemas
+	  Linux la inclyen pero si tu sistema no la incluye puedes encontrarla
+	  en ftp://ftp.uu.net/graphics/jpeg
+
+  Una vez que todo lo necesario este listo, edita el Makefile, ejecuta make
+  y ya esta ...
+
+
+WINDOWS
+-------
+
+	-Asegurate de tener OPENGL32.DLL y GLU32.DLL. Si no es el caso puedes
+	 descargarlas desde la homepage de ssystem
+		 ( http://www1.las.es/~amil/ssystem )
+
+	 NO TE BAJES MESA PARA 3DFX SI NO TIENES UNA TARJETA 3DFX MEJOR
+	 TE BAJAS EL OPENGL DE MICROSOFT
+
+	-El comportamiento de ssystem es algo extran~o bajo ciertos driver
+	 OpenGL. Por lo que yo se no es problema de ssystem. Contacta con
+	 el fabricante de tu tarjeta para conseguir unos nuevos drivers.
+
+	-DLLs con soporte para hardware 3Dfx estan disponibles desde la
+	 homepage de ssystem. A menos que esas DLLs esten en el directorio
+	 donde este ssystem.exe o en el path (mejor el primer metodo) el
+	 programa utilizara las DLLs OpenGL (si estan instaladas) y el
+	 rendimiento sera muy pobre.

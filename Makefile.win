@@ -1,0 +1,21 @@
+!include <win32.mak>
+
+MESADIR = c:\Mesa-3.0
+
+CFLAGS= /Ox /G5 /GA /D__MSC__ /D__WIN32__ /DWIN32 \
+        /I$(MESADIR)\include /DSDATADIR=\".\"
+
+LINK=   $(MESADIR)\lib\OpenGL32.lib $(MESADIR)\lib\GLU32.lib \
+        $(MESADIR)\lib\GLUT32.lib libjpeg.lib \
+        glide2x.lib texus.lib kernel32.lib user32.lib gdi32.lib winmm.lib
+
+default: ssystem.exe
+
+ssystem.exe: ssystem.obj init.obj positions.obj joystick.obj ssystem.res
+        $(link) $(LINK) ssystem.obj init.obj positions.obj joystick.obj ssystem.res
+
+.c.obj:
+        $(CC) $(CFLAGS) -c $*.c
+
+ssystem.res: ssystem.rc
+        $(rc) ssystem.rc

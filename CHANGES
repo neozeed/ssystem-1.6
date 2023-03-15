@@ -1,0 +1,202 @@
+------------------------------
+11/26/97: limited alfa release
+------------------------------
+
+
+-------------
+2/13/98: v1.0
+-------------
+
+-Fixed a bug in planets rotation direction
+
+-Now use Yale Bright Stars catalog for stars positioning
+
+-3dfx Accelerated point management is OK starting with the Voodoo driver
+ included in Mesa 2.6 distribution
+
+-Runtime config options added
+
+-Makefile for Microsoft Visual C++ included
+
+-More accuracy
+
+-On screen info added
+
+-Orbits not in the same plane NOW
+
+-Minor speed improvements
+
+-Updated textures
+
+
+
+--------------
+2/15/98: v1.01
+--------------
+
+
+-Minor updates/bug fixes in Windows version
+
+
+
+--------------
+2/17/98: v1.02
+--------------
+
+
+-Linux "Core dumped bug" fixed
+
+
+
+
+-------------
+3/13/98: v1.1
+-------------
+
+-Code reorganization
+
+-Updated and new textures
+
+-New algorithm for planets positioning. You can view planets in a given date 
+ (see README for accuracy details). Old Nbody algorithm is no longer supported
+
+-A few satellites added (Moon, Io, Callisto, Ganymede, Europa, Titan)
+
+-On screen help available
+
+-New camera handling routines (see README for details)
+
+-Minor updates/bug fixes
+
+
+
+------------
+5/2/98: v1.2
+------------
+
+-Updated textures (Mercury, Ganymede, Callisto, Europa, Titan, Saturn Rings)
+
+-New satellites (Tethys, Dione, Rhea, Triton, Charon)
+
+-New Sun and Saturn Rings look (alpha blending)
+
+-Two new command line options, "-slices" and "-stacks" (see README for details)
+
+-Windows Screen Saver version (see scrsaver/README in windows distribution)
+
+-Fixed a bug in satellites positioning algorithm, orbits planes are OK now
+
+-More realistic planets' radii
+
+-Minor updates
+
+
+
+-------------
+7/26/98: v1.3
+-------------
+
+-Fixed a bug in "no lighting" mode
+
+-Distant bodies labels
+
+-Enhanced textures
+
+-Mouse and Joystick support
+
+-Command line option for FULL SCREEN mode (-fullscreen)
+
+-New speed control method
+
+-Minor updates
+
+
+
+-------------
+9/13/98: v1.4
+-------------
+
+-Fixed bugs in satellites positioning code
+
+-Two new camera modes (Body to Body and Orbiter, see README for details)
+
+-Great performance improvement, especially when running hardware accelerated.
+ (now SLICES and STACKS default to 20 instead of 12, but even with this
+ quality improvement program runs faster than ever)
+ 
+-Earth, Moon, Mars and Jupiter high resolution textures (see hires/README)
+
+-Real Time mode added
+
+-New fullscreen modes under windows 95 (see README for details)
+
+-Local time display in HUD
+
+
+-------------
+12/1/98: v1.5
+-------------
+
+-Smart texture handling (high-res maps on 3dfx cards, maps larger than texture
+ buffer and grayscale maps detection)
+
+-Textures update
+
+-Brighter Stars labels
+
+-On the fly star brightness control
+
+-FOV control
+
+-More performance improvement (about 20%)
+
+-Primitive framerate control  (see command line options section in README)
+
+-Configuration file. This will let you use your own elements, define new
+ bodies, easily add rings and initialize parameters (demo mode, local time,
+ detail level, data directory, ...).
+
+-Current planet trail
+
+-Ability to save screenshots
+
+-A few accuracy bugs fixed
+
+
+
+-------------
+2/26/99: v1.6
+-------------
+
+-New Earth, Saturn, Io and Europa texture maps
+
+-Atmosphere rendering ('a' toggles it on/off)
+
+-Flattening support (at last!, Jupiter and Saturn look more realistic)
+
+-Updated configuration file stuff (more readable and versatile, see ssystem.conf)
+
+-Asteroids (just a few and with a pseudo-random shape)
+
+-Deimos and Phobos (disabled by default, edit ssystem.conf to enable them)
+
+-Stars color based on their spectral type
+
+-Brighter stars are now textured objects
+
+-Improved "Linked" camera mode
+
+-New Sun texture (see sun section in ssystem.conf)
+
+-New planet positioning algorithms (based on VSOP87 theory, see bodies section
+				   in ssystem.conf)
+
+-Improved trail support
+
+-Updated linux joystick support (you'll NEED 1.x joystick driver)
+
+-A nifty opening screen
+
+-Code clean up
+
+-The usual bunch of bug fixes

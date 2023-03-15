@@ -1,0 +1,25 @@
+			3D HARDWARE AND BORDERED TEXTURES
+			=================================
+
+
+	I haven't been able to test ssystem by myself on many 3d hardware
+(only Voodoo, Riva TNT and Permedia chipsets) and all of them worked fine
+with unbordered textures. With bordered textures either it won't work at all
+(Voodoo) or VERY SLOW (Riva TNT).
+
+	The bordered textures feature has been included to avoid artifacts
+between adjacent texture objects when running under some OpenGL drivers
+(AFAIK Microsoft OpenGL and Mesa with software-only driver).
+
+	Don't even try to run ssystem on 3Dfx OpenGL beta 2.1, it won't work
+properly (i'd say this driver is in a very early beta stage and thus contains
+lots of bugs). Anyway, Mesa is faster and more stable so who cares ;-)
+
+	If you own a 3D card but it doesn't support OpenGL, you should
+download one of these Direct3D-->OpenGL wrappers.
+
+	DIRECTGL  	
+		http://www.scitechsoft.com/gldirect.html
+
+	Mesa 3.0 DirectX 6 driver
+		http://www.altsoftware.com/Fopengl.html
