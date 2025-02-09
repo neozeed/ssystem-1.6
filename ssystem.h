@@ -20,7 +20,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#ifndef __APPLE__
 #include <GL/glut.h>
+#else
+//there must be a better way...
+#include "/System/Library/Frameworks/GLUT.framework/Versions/A/Headers/glut.h"
+#endif
 #ifndef PLANET
 #include "cfgparse.tab.h"
 #endif

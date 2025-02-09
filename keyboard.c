@@ -16,7 +16,9 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
-
+#ifdef __WIN32__
+#include <windows.h>
+#endif
 #include "ssystem.h"
 
 void Key( unsigned char key, int x, int y )

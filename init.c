@@ -25,7 +25,9 @@
   	- Create display lists
   	- Other initialization routines
 */
-
+#ifdef __WIN32__
+#include <windows.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -37,6 +39,8 @@
 #include "jpeglib.h"
 #include <setjmp.h>
 #include "ssystem.h"
+
+//void glBindTexture (GLenum target, GLuint texture){}
 
 GLfloat LightPos[4] = {0.0, 0.0, 0.0, 1.0};
 GLfloat ambient[4] = {0.2, 0.2, 0.2, 0.0};
@@ -566,4 +570,6 @@ void InitSun(char *filename, double blend, int cutlevel)
    free(planets[0].Image);
    free(localimage);
 } 
+
+
 

@@ -16,7 +16,9 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
-
+#ifdef __WIN32__
+#include <windows.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -382,6 +384,9 @@ static void Display( void )
    double a,c,dist;
    int i,j;
 
+   if(!init)
+	return;
+
    glLoadIdentity();
    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
    Camera();
@@ -509,6 +514,8 @@ int PASCAL
         glutSetCursor(GLUT_CURSOR_NONE);
 #endif
    } else glutCreateWindow( "ssystem 1.6" );
+
+   glutDisplayFunc (Display);
 
    joydetect();
    demomode=!bench;

@@ -17,6 +17,9 @@
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
 
+#ifdef __WIN32__
+#include <windows.h>
+#endif
 #include "ssystem.h"
 
 #ifdef WIN32
